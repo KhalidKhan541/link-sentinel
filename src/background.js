@@ -1,0 +1,1 @@
+let monitoredUrls = []; chrome.webNavigation.onCompleted.addListener(details => { if(monitoredUrls.includes(details.url)) { chrome.action.setBadgeText({text: '!', tabId: details.tabId}); } }); chrome.runtime.onMessage.addListener((msg, s, resp) => { if(msg.action === 'monitor') { monitoredUrls.push(msg.url); resp({success: true}); } });
